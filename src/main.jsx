@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import './index.css'
 import useRouter from './hooks/useRouter'
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const router = useRouter();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
