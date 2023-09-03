@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <>
       <header className="container mx-auto flex justify-between items-center p-3">
-        <h1>{import.meta.env.VITE_APP_NAME}</h1>
+        <h1 className="text-xl bold">{import.meta.env.VITE_APP_NAME}</h1>
         <span
           ref={settingBtn}
           onClick={openSetting}
