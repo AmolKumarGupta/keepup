@@ -3,6 +3,12 @@ import App from '../App'
 import Test from '../pages/Test'
 import Index from '../pages/Index'
 
+/**
+ * setup routes and layout. 
+ * by logic, it is not a actual react hook
+ * 
+ * @returns Router
+ */
 export default function useRouter() {
   return createHashRouter([
     {
