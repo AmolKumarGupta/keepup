@@ -14,14 +14,14 @@ export default function Index() {
           onClick={() => setShowTracks((prev) => !prev)}
           className="bg-white px-3 py-1 rounded shadow active:shadow-neutral-200"
         >
-          {showTracks ? "New" : "Back"}
+          New
         </button>
       </main>
 
       {showTracks ? (
         <TrackList />
       ) : (
-        <section className="mt-1 text-center">New Track Form</section>
+        <section className="mt-3 text-center">New Track Form</section>
       )}
     </>
   );

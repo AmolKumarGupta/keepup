@@ -5,17 +5,17 @@ function TrackList() {
   const tracks = [
     {
       id: uid(),
-      name: "test1",
-      description: "this is a test. it is only for test purpose.",
+      name: "Late night code",
+      description: "Fix a refmini #45 bug, and some ML code",
       category: "coding-session",
       time: 3660,
       created_at: Date.now(),
     },
     {
       id: uid(),
-      name: "test2",
-      description: "this is a test 2",
-      category: "coding-session",
+      name: "Go for shopping",
+      description: "Need to buy some new clothes.",
+      category: "shopping",
       time: 1800,
       created_at: Date.now(),
     },
@@ -23,7 +23,7 @@ function TrackList() {
 
   return (
     <>
-      <section className="my-1">
+      <section className="my-3 space-y-2">
         {tracks.map((t) => (
           <Track key={t.id} {...t} />
         ))}
