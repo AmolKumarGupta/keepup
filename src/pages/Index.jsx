@@ -1,8 +1,9 @@
 import { useState } from "react";
 import TrackList from "../components/TrackList";
+import TrackForm from "../components/forms/TrackForm";
 
 export default function Index() {
-  const [showTracks, setShowTracks] = useState(true);
+  const [showTracks, setShowTracks] = useState(false);
 
   return (
     <>
@@ -18,11 +19,7 @@ export default function Index() {
         </button>
       </main>
 
-      {showTracks ? (
-        <TrackList />
-      ) : (
-        <section className="mt-3 text-center">New Track Form</section>
-      )}
+      {showTracks ? <TrackList /> : <TrackForm />}
     </>
   );
 }
