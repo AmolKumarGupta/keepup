@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import uniqid from "./uniqid";
 
-function getTrack() {
+export function getTrack() {
   let mock = [
     {
       id: uniqid(),
@@ -13,7 +13,7 @@ function getTrack() {
     },
   ];
 
-  return new Map(mock.map((t) => ({ key: t.id, value: t })));
+  return new Map(mock.map((t) => [t.id, t]));
 }
 
 function saveState(key, value) {
