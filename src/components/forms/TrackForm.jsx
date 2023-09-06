@@ -1,6 +1,12 @@
+import PropTypes from "prop-types";
 import { useRef, useState } from "react";
+import useTrackStore from "../../store/trackStore";
+import uniqid from "../../store/uniqid";
+import useTime from "../../hooks/useTime";
 
-function TrackForm() {
+function TrackForm({ onSave }) {
+  const { toTime } = useTime();
+  const saveTrack = useTrackStore((s) => s.saveTrack);
   const form = useRef(null);
   const [error, setError] = useState({
     name: false,
@@ -41,6 +47,16 @@ function TrackForm() {
       description: false,
       time: false,
     });
+
+    saveTrack({
+      id: uniqid(),
+      name: fd.get("name"),
+      description: fd.get("description"),
+      category: fd.get("category"),
+      time: toTime(fd.get("time")),
+      created_at: Date.now(),
+    });
+    onSave();
   }
 
   return (
@@ -109,5 +125,9 @@ function TrackForm() {
     </section>
   );
 }
+
+TrackForm.propTypes = {
+  onSave: PropTypes.func,
+};
 
 export default TrackForm;

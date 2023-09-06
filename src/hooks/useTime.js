@@ -13,7 +13,15 @@ function useTime() {
     return string.trim();
   }
 
-  return { toHuman };
+  function toTime(timeString) {
+    let [hrStr, minStr] = timeString.split(":");
+    let hr = Number(hrStr);
+    let min = Number(minStr);
+
+    return parseInt(hr) * 3600 + parseInt(min) * 60;
+  }
+
+  return { toHuman, toTime };
 }
 
 export default useTime;

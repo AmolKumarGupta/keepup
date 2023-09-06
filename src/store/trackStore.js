@@ -25,7 +25,7 @@ const useTrackStore = create((set) => ({
   saveTrack: (value) =>
     set((state) => {
       saveState("", "");
-      return { tracks: new Map(state.tracks).set(uniqid(), value) };
+      return { tracks: new Map(state.tracks).set(value.id, value) };
     }),
 }));
 

@@ -3,7 +3,7 @@ import TrackList from "../components/TrackList";
 import TrackForm from "../components/forms/TrackForm";
 
 export default function Index() {
-  const [showTracks, setShowTracks] = useState(false);
+  const [showTracks, setShowTracks] = useState(true);
 
   return (
     <>
@@ -19,7 +19,11 @@ export default function Index() {
         </button>
       </main>
 
-      {showTracks ? <TrackList /> : <TrackForm />}
+      {showTracks ? (
+        <TrackList />
+      ) : (
+        <TrackForm onSave={() => setShowTracks(true)} />
+      )}
     </>
   );
 }
