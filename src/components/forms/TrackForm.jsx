@@ -36,6 +36,11 @@ function TrackForm() {
     }
 
     if (hasError) return false;
+    setError({
+      name: false,
+      description: false,
+      time: false,
+    });
   }
 
   return (
