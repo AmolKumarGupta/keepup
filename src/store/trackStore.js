@@ -10,9 +10,7 @@ export function getTrack(key) {
   return new Map(tracks.map((t) => [t.id, t]));
 }
 
-function saveState(key, value) {
-  console.log(`saving at ${key} ...`);
-
+export function saveState(key, value) {
   const tracks = Array.from(value, ([, track]) => track);
   localStorage.setItem(key, JSON.stringify(tracks));
 }
