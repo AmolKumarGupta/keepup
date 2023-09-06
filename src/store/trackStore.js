@@ -1,31 +1,33 @@
 import { create } from "zustand";
-import uniqid from "./uniqid";
 
-export function getTrack() {
-  let mock = [
-    {
-      id: uniqid(),
-      name: "Late night code",
-      description: "Fix a refmini #45 bug, and some ML code",
-      category: "coding-session",
-      time: 3660,
-      created_at: Date.now(),
-    },
-  ];
+export function getTrack(key) {
+  let tracksJson = localStorage.getItem(key);
+  if (tracksJson == null) {
+    return new Map();
+  }
 
-  return new Map(mock.map((t) => [t.id, t]));
+  let tracks = JSON.parse(tracksJson);
+  return new Map(tracks.map((t) => [t.id, t]));
 }
 
 function saveState(key, value) {
-  console.log(`saving...${key} ${value}`);
+  console.log(`saving at ${key} ...`);
+
+  const tracks = Array.from(value, ([, track]) => track);
+  localStorage.setItem(key, JSON.stringify(tracks));
 }
 
 const useTrackStore = create((set) => ({
-  tracks: getTrack(),
+  cur: new Date(),
+  tracks: getTrack(new Date().toLocaleDateString()),
   saveTrack: (value) =>
     set((state) => {
-      saveState("", "");
-      return { tracks: new Map(state.tracks).set(value.id, value) };
+      const freshTracks = {
+        tracks: new Map(state.tracks).set(value.id, value),
+      };
+
+      saveState(state.cur.toLocaleDateString(), freshTracks.tracks);
+      return freshTracks;
     }),
 }));
 
