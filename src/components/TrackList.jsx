@@ -1,25 +1,12 @@
 import Track from "./Track";
-import uid from "../store/uniqid";
+import useTrackStore from "../store/trackStore";
+import { useMemo } from "react";
 
 function TrackList() {
-  const tracks = [
-    {
-      id: uid(),
-      name: "Late night code",
-      description: "Fix a refmini #45 bug, and some ML code",
-      category: "coding-session",
-      time: 3660,
-      created_at: Date.now(),
-    },
-    {
-      id: uid(),
-      name: "Go for shopping",
-      description: "Need to buy some new clothes.",
-      category: "shopping",
-      time: 1800,
-      created_at: Date.now(),
-    },
-  ];
+  const trackMap = useTrackStore((s) => s.tracks);
+  const tracks = useMemo(() => {
+    return Array.from(trackMap, ([, value]) => value);
+  }, [trackMap]);
 
   return (
     <>
