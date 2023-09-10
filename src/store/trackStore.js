@@ -1,7 +1,8 @@
 import { create } from "zustand";
+import { prefix } from "../utils";
 
 export function getTrack(key) {
-  let tracksJson = localStorage.getItem(key);
+  let tracksJson = localStorage.getItem(prefix(key));
   if (tracksJson == null) {
     return new Map();
   }
@@ -12,7 +13,7 @@ export function getTrack(key) {
 
 export function saveState(key, value) {
   const tracks = Array.from(value, ([, track]) => track);
-  localStorage.setItem(key, JSON.stringify(tracks));
+  localStorage.setItem(prefix(key), JSON.stringify(tracks));
 }
 
 const useTrackStore = create((set) => ({
