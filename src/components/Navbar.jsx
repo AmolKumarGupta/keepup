@@ -1,12 +1,15 @@
 import { useRef } from "react";
 import settingIcon from "../assets/settings.svg";
+import useAppStore from "../store/appStore";
 
 function Navbar() {
   const settingBtn = useRef(null);
+  const toggleOptionPage = useAppStore(s => s.toggleOptionPage)
 
   function openSetting() {
     if (!settingBtn.current) return;
-
+    
+    toggleOptionPage();
     settingBtn.current.classList.add("animate-spin");
     const timer = setTimeout(() => {
       settingBtn.current.classList.remove("animate-spin");
