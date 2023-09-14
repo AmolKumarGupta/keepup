@@ -2,7 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import App from "../App";
 import Test from "../pages/Test";
 import Index from "../pages/Index";
-import Export from "../pages/export";
+import Export from "../pages/Export";
 
 /**
  * setup routes and layout.
@@ -11,24 +11,24 @@ import Export from "../pages/export";
  * @returns Router
  */
 export default function useRouter() {
-	return createHashRouter([
-		{
-			path: "/",
-			element: <App />,
-			children: [
-				{
-					path: "",
-					element: <Index />,
-				},
-				{
-					path: "test",
-					element: <Test />,
-				},
-				{
-					path: "export",
-					element: <Export />,
-				},
-			],
-		},
-	]);
+  return createHashRouter([
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "",
+          element: <Index />,
+        },
+        {
+          path: "test",
+          element: <Test />,
+        },
+        {
+          path: "export",
+          element: <Export />,
+        },
+      ],
+    },
+  ]);
 }
