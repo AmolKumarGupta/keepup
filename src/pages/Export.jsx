@@ -48,25 +48,29 @@ export default function Export() {
 
   return (
     <>
-      <h1 className="text-xl bold">Export Data</h1>
-      <h3 className="">Enter date</h3>
+      <h1 className="text-lg bold mb-4">Export Data</h1>
 
-      <input
-        type="text"
-        id="textInput"
-        value={userInput}
-        onChange={handleInputChange}
-        placeholder="Ex: 14/09/2023"
-        required
-      />
+      <section className="text-center">
+        <div className="flex justify-center ">
+          <input
+            type="text"
+            id="textInput"
+            className="px-3 py-1 max-w-[160px] rounded rounded-r-none shadow active:shadow-blue-600 cursor-pointer"
+            value={userInput}
+            onChange={handleInputChange}
+            placeholder="Ex: 14/09/2023"
+            required
+          />
 
-      <button
-        type="submit"
-        className="mt-3 px-3 py-1 rounded shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
-        onClick={getLocalStorage}
-      >
-        Download
-      </button>
+          <button
+            type="submit"
+            className="px-3 py-1 rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+            onClick={getLocalStorage}
+          >
+            Export
+          </button>
+        </div>
+      </section>
     </>
   );
 }
