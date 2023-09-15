@@ -8,7 +8,7 @@ The user-friendly interface lets you easily add new habits and log your progress
 
 - Beautiful UI/UX
 - Show Progress on Date Based (Coming Soon)
-- Export Data as JSON (Coming Soon)
+- Export Data as JSON
 - Post data to specifix URL (Coming Soon)
 
 ### How to Install
