@@ -58,7 +58,7 @@ function Calender({ date }) {
             className={`p-1 ${
               (i + emptyFirstCells.length) % 7 == 0 ? "" : "text-gray-600"
             } cursor-pointer transition border-none hover:border rounded-full  ${
-              curDate == day ? "bg-gray-400" : "hover:bg-gray-200"
+              curDate == day ? "bg-gray-300" : "hover:bg-gray-200"
             }`}
           >
             {day}
