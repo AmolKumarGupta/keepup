@@ -1,8 +1,8 @@
 import { createHashRouter } from "react-router-dom";
 import App from "../App";
-import Test from "../pages/Test";
 import Index from "../pages/Index";
 import Export from "../pages/Export";
+import Calender from "../components/Calender";
 
 /**
  * setup routes and layout.
@@ -22,7 +22,7 @@ export default function useRouter() {
         },
         {
           path: "test",
-          element: <Test />,
+          element: <Calender date={new Date()} />,
         },
         {
           path: "export",
