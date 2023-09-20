@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
+import leftIcon from "../assets/left.svg";
+import rightIcon from "../assets/right.svg";
 
 function Calender({ date }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const month = date.toLocaleString("en-US", { month: "long" });
+  const curDate = date.getDate();
+  const month = date.toLocaleString("en-US", { month: "short" });
   const year = date.getFullYear();
 
   const daysInMonth = Array.from(
@@ -13,37 +16,51 @@ function Calender({ date }) {
 
   const firstDay = new Date(year, date.getMonth(), 1).getDay();
   const emptyFirstCells = Array.from({ length: firstDay }, (_, i) => (
-    <div key={`empty-${i}`} className="empty-cell bg-red-100" />
+    <div key={`empty-${i}`} className="" />
   ));
 
   const prevMonth = () => {
-    // this.setState(prevState => ({
     //   date: new Date(prevState.date.getFullYear(), prevState.date.getMonth() - 1),
-    // }));
   };
 
   const nextMonth = () => {
-    // this.setState(prevState => ({
     //   date: new Date(prevState.date.getFullYear(), prevState.date.getMonth() + 1),
-    // }));
   };
 
   return (
-    <div className="calendar">
-      <div className="calendar-header">
-        <button onClick={prevMonth}>Previous</button>
-        <h2>{`${month} ${year}`}</h2>
-        <button onClick={nextMonth}>Next</button>
+    <div className="w-[300px] mx-auto text-center">
+      <div className="flex gap-4">
+        <button onClick={prevMonth} className="cursor-pointer">
+          Back
+        </button>
+
+        <div className="flex justify-between items-center flex-grow">
+          <button onClick={prevMonth} className="cursor-pointer">
+            <img src={leftIcon} alt="previous" />
+          </button>
+          <h2>{`${month} ${year}`}</h2>
+          <button onClick={nextMonth} className="cursor-pointer">
+            <img src={rightIcon} alt="next" />
+          </button>
+        </div>
       </div>
-      <div className="calendar-grid">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="calendar-header-cell">
+
+      <div className="grid grid-cols-7 gap-3 mt-4">
+        {daysOfWeek.map((day, i) => (
+          <div key={day} className={`p-1 ${i == 0 ? "" : "text-gray-600"}`}>
             {day}
           </div>
         ))}
         {emptyFirstCells}
-        {daysInMonth.map((day) => (
-          <div key={day} className="calendar-cell">
+        {daysInMonth.map((day, i) => (
+          <div
+            key={day}
+            className={`p-1 ${
+              (i + emptyFirstCells.length) % 7 == 0 ? "" : "text-gray-600"
+            } cursor-pointer transition border-none hover:border rounded-full  ${
+              curDate == day ? "bg-gray-400" : "hover:bg-gray-200"
+            }`}
+          >
             {day}
           </div>
         ))}
