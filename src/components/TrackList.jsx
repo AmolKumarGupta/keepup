@@ -8,12 +8,21 @@ function TrackList() {
     return Array.from(trackMap, ([, value]) => value);
   }, [trackMap]);
 
+  const NoTrackEle = () => (
+    <div className="text-lg font-medium text-gray-500 text-center mt-[150px]">
+      No track found, Use{" "}
+      <kbd className="bg-gray-200 p-1/2 px-1 rounded-md">New</kbd>
+    </div>
+  );
+
   return (
     <>
       <section className="my-3 space-y-2">
-        {tracks.map((t) => (
-          <Track key={t.id} {...t} />
-        ))}
+        {tracks.length > 0 ? (
+          tracks.map((t) => <Track key={t.id} {...t} />)
+        ) : (
+          <NoTrackEle />
+        )}
       </section>
     </>
   );
