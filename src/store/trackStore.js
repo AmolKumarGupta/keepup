@@ -19,6 +19,13 @@ export function saveState(key, value) {
 const useTrackStore = create((set) => ({
   cur: new Date(),
   tracks: getTrack(new Date().toLocaleDateString()),
+  setDate: (value) =>
+    set(() => {
+      return {
+        cur: value,
+        tracks: getTrack(value.toLocaleDateString()),
+      };
+    }),
   saveTrack: (value) =>
     set((state) => {
       const freshTracks = {

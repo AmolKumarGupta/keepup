@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import leftIcon from "../assets/left.svg";
 import rightIcon from "../assets/right.svg";
 
-function Calender({ date, onBack }) {
+function Calender({ date, onBack, onSelecting }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const curDate = date.getDate();
@@ -54,6 +54,7 @@ function Calender({ date, onBack }) {
         {emptyFirstCells}
         {daysInMonth.map((day, i) => (
           <div
+            onClick={() => onSelecting(new Date(year, date.getMonth(), day))}
             key={day}
             className={`p-1 ${
               (i + emptyFirstCells.length) % 7 == 0 ? "" : "text-gray-600"
@@ -72,6 +73,7 @@ function Calender({ date, onBack }) {
 Calender.propTypes = {
   date: PropTypes.instanceOf(Date),
   onBack: PropTypes.func.isRequired,
+  onSelecting: PropTypes.func,
 };
 
 export default Calender;

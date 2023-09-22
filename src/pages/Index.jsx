@@ -7,13 +7,21 @@ import useTrackStore from "../store/trackStore";
 export default function Index() {
   const [showComponent, setComponent] = useState("list");
   const selectedDate = useTrackStore((s) => s.cur);
+  const setDate = useTrackStore((s) => s.setDate);
 
   const selectComponent = useMemo(() => {
     if (showComponent == "form") {
       return <TrackForm onSave={() => setComponent("list")} />;
     } else if (showComponent == "calender") {
       return (
-        <Calender date={selectedDate} onBack={() => setComponent("list")} />
+        <Calender
+          date={selectedDate}
+          onBack={() => setComponent("list")}
+          onSelecting={(d) => {
+            setDate(d);
+            setComponent("list");
+          }}
+        />
       );
     }
     return <TrackList />;
