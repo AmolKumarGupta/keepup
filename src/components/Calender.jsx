@@ -34,7 +34,7 @@ function Calender({ date }) {
           Back
         </button>
 
-        <div className="flex justify-between items-center flex-grow">
+        <div className="flex justify-between items-center flex-grow hidden">
           <button onClick={prevMonth} className="cursor-pointer">
             <img src={leftIcon} alt="previous" />
           </button>
