@@ -12,7 +12,9 @@ export default function Index() {
     if (showComponent == "form") {
       return <TrackForm onSave={() => setComponent("list")} />;
     } else if (showComponent == "calender") {
-      return <Calender date={selectedDate} />;
+      return (
+        <Calender date={selectedDate} onBack={() => setComponent("list")} />
+      );
     }
     return <TrackList />;
   }, [showComponent, selectedDate]);

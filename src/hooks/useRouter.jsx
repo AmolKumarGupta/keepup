@@ -22,7 +22,7 @@ export default function useRouter() {
         },
         {
           path: "test",
-          element: <Calender date={new Date()} />,
+          element: <Calender date={new Date()} onBack={() => {}} />,
         },
         {
           path: "export",

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import leftIcon from "../assets/left.svg";
 import rightIcon from "../assets/right.svg";
 
-function Calender({ date }) {
+function Calender({ date, onBack }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const curDate = date.getDate();
@@ -30,7 +30,7 @@ function Calender({ date }) {
   return (
     <div className="w-[300px] mx-auto text-center">
       <div className="flex gap-4">
-        <button onClick={prevMonth} className="cursor-pointer">
+        <button onClick={onBack} className="cursor-pointer">
           Back
         </button>
 
@@ -71,6 +71,7 @@ function Calender({ date }) {
 
 Calender.propTypes = {
   date: PropTypes.instanceOf(Date),
+  onBack: PropTypes.func.isRequired,
 };
 
 export default Calender;
