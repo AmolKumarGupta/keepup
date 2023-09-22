@@ -54,7 +54,11 @@ function Calender({ date, onBack, onSelecting }) {
         {emptyFirstCells}
         {daysInMonth.map((day, i) => (
           <div
-            onClick={() => onSelecting(new Date(year, date.getMonth(), day))}
+            onClick={() =>
+              typeof onSelecting === "function"
+                ? onSelecting(new Date(year, date.getMonth(), day))
+                : () => {}
+            }
             key={day}
             className={`p-1 ${
               (i + emptyFirstCells.length) % 7 == 0 ? "" : "text-gray-600"

@@ -25,7 +25,7 @@ export default function Index() {
       );
     }
     return <TrackList />;
-  }, [showComponent, selectedDate]);
+  }, [showComponent, selectedDate, setDate]);
 
   return (
     <>
