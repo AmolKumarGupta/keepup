@@ -61,15 +61,51 @@ export default function useExport() {
     document.body.removeChild(a);
   }
 
-  function postData(linkRef) {
-    if (!linkRef || !linkRef.current) {
-      return;
+  function getData() {
+    const data = Object.keys(localStorage);
+    if (!data) {
+      return [];
     }
 
-    if (!linkRef.current.value) {
-      return alert("Url is Empty!");
+    const matchingKeys = data.filter((key) =>
+      key.startsWith(import.meta.env.VITE_LS_PREFIX)
+    );
+
+    if (matchingKeys.length === 0) {
+      return [];
     }
+
+    let filteredData = {};
+    matchingKeys.forEach((key) => {
+      filteredData[key] = JSON.parse(localStorage.getItem(key));
+    });
+
+    return filteredData;
   }
 
-  return { exportAll, getLocalStorage, download, postData };
+  function postData(url, data) {
+    // check url is valid or not
+    try {
+      new URL(url);
+    } catch (err) {
+      return false;
+    }
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  return { exportAll, getLocalStorage, download, postData, getData };
 }

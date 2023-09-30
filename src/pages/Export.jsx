@@ -4,11 +4,28 @@ import useExport from "../hooks/useExport";
 export default function Export() {
   const [userInput, setUserInput] = useState("");
   const linkRef = useRef(null);
-  const { exportAll, getLocalStorage, postData } = useExport();
+  const { exportAll, getLocalStorage, postData, getData } = useExport();
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
   };
+
+  function handlePost() {
+    if (!linkRef || !linkRef.current) {
+      return alert("Something went wrong!");
+    }
+
+    if (!linkRef.current.value) {
+      return alert("Url is Empty!");
+    }
+
+    let filteredData = getData();
+    if (filteredData == []) {
+      return alert("No Data found!");
+    }
+
+    postData(linkRef.current.value, filteredData);
+  }
 
   return (
     <>
@@ -55,7 +72,7 @@ export default function Export() {
           <button
             type="submit"
             className="px-3 py-1 max-w-[100px] w-[100px] rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
-            onClick={() => postData(linkRef)}
+            onClick={() => handlePost()}
           >
             Post
           </button>
