@@ -1,4 +1,8 @@
 export default function useExport() {
+  /**
+   * export all data from localStorage, that start with LS_PREFIX,
+   * via download
+   */
   function exportAll() {
     const data = Object.keys(localStorage);
 
@@ -22,6 +26,12 @@ export default function useExport() {
     download([JSON.stringify(filteredData)]);
   }
 
+  /**
+   * export data from localStorage whose date match with given input,
+   * via download
+   *
+   * @param {string} userInput
+   */
   function getLocalStorage(userInput) {
     if (!userInput) {
       return alert("It is empty");
@@ -47,6 +57,12 @@ export default function useExport() {
     });
   }
 
+  /**
+   * download the given data with specified label
+   *
+   * @param {json} data
+   * @param {string} label
+   */
   function download(data, label = "") {
     const blob = new Blob(data, { type: "text/plain" });
     const blobURL = URL.createObjectURL(blob);
@@ -61,6 +77,10 @@ export default function useExport() {
     document.body.removeChild(a);
   }
 
+  /**
+   * get all data from localStorage
+   * @returns {Array}
+   */
   function getData() {
     const data = Object.keys(localStorage);
     if (!data) {
@@ -83,6 +103,13 @@ export default function useExport() {
     return filteredData;
   }
 
+  /**
+   * send data to the given url using POST method as a json
+   *
+   * @param {string} url
+   * @param {Array} data
+   * @returns {void}
+   */
   function postData(url, data) {
     // check url is valid or not
     try {
