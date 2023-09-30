@@ -66,17 +66,25 @@ export default function Export() {
     document.body.removeChild(a);
   }
 
-  function postData() {}
+  function postData() {
+    if (!linkRef || !linkRef.current) {
+      return;
+    }
+
+    if (!linkRef.current.value) {
+      return alert("Url is Empty!");
+    }
+  }
 
   return (
     <>
       <h1 className="text-lg bold mb-4">Export Data</h1>
 
-      <section className="text-center space-y-3">
+      <section className="text-center space-y-3 max-w-[15rem] mx-auto">
         <div>
           <button
             type="button"
-            className="px-3 py-1 min-w-[230px] rounded shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+            className="px-3 py-1 w-full rounded shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
             onClick={exportAll}
           >
             Export All
@@ -86,7 +94,7 @@ export default function Export() {
         <div className="flex justify-center ">
           <input
             id="textInput"
-            className="px-3 py-1 max-w-[160px] rounded rounded-r-none shadow active:shadow-blue-600 cursor-pointer"
+            className="px-3 py-1 w-full rounded rounded-r-none shadow active:shadow-blue-600 cursor-pointer"
             value={userInput}
             onChange={handleInputChange}
             placeholder="Ex: 14/09/2023"
@@ -95,7 +103,7 @@ export default function Export() {
 
           <button
             type="submit"
-            className="px-3 py-1 rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+            className="px-3 py-1 max-w-[100px] w-[100px] rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
             onClick={getLocalStorage}
           >
             Export
@@ -105,14 +113,14 @@ export default function Export() {
         <div className="flex justify-center ">
           <input
             ref={linkRef}
-            className="px-3 py-1 max-w-[160px] rounded rounded-r-none shadow active:shadow-blue-600 cursor-pointer"
+            className="px-3 py-1 w-full rounded rounded-r-none shadow active:shadow-blue-600 cursor-pointer"
             placeholder="https://"
             required
           />
 
           <button
             type="submit"
-            className="px-3 py-1 rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+            className="px-3 py-1 max-w-[100px] w-[100px] rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
             onClick={postData}
           >
             Post
