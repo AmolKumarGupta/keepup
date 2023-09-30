@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Export() {
   const [userInput, setUserInput] = useState("");
+  const linkRef = useRef(null);
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
@@ -65,6 +66,8 @@ export default function Export() {
     document.body.removeChild(a);
   }
 
+  function postData() {}
+
   return (
     <>
       <h1 className="text-lg bold mb-4">Export Data</h1>
@@ -73,7 +76,7 @@ export default function Export() {
         <div>
           <button
             type="button"
-            className="px-3 py-1 min-w-[160px] rounded shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+            className="px-3 py-1 min-w-[230px] rounded shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
             onClick={exportAll}
           >
             Export All
@@ -96,6 +99,23 @@ export default function Export() {
             onClick={getLocalStorage}
           >
             Export
+          </button>
+        </div>
+
+        <div className="flex justify-center ">
+          <input
+            ref={linkRef}
+            className="px-3 py-1 max-w-[160px] rounded rounded-r-none shadow active:shadow-blue-600 cursor-pointer"
+            placeholder="https://"
+            required
+          />
+
+          <button
+            type="submit"
+            className="px-3 py-1 rounded rounded-l-none shadow active:shadow-blue-600 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+            onClick={postData}
+          >
+            Post
           </button>
         </div>
       </section>
