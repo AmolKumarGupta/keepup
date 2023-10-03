@@ -8,8 +8,7 @@ const manifestForPlugIn = {
   manifest: {
     name: "Keepup",
     short_name: "Keepup",
-    description:
-      "Keepup - Habit Tracker Progressive Web AppI am a simple vite app",
+    description: "Keepup - Habit Tracker Progressive Web App",
     icons: [
       {
         src: "android-chrome-192x192.png",
