@@ -1,30 +1,32 @@
 import PropTypes from "prop-types";
 import leftIcon from "../assets/left.svg";
 import rightIcon from "../assets/right.svg";
+import { useState } from "react";
 
-function Calender({ date, onBack, onSelecting, changeMonth }) {
+function Calender({ date, onBack, onSelecting }) {
+  const [fake, setFake] = useState(date);
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const curDate = date.getDate();
-  const month = date.toLocaleString("en-US", { month: "short" });
-  const year = date.getFullYear();
+  const month = fake.toLocaleString("en-US", { month: "short" });
+  const year = fake.getFullYear();
 
   const daysInMonth = Array.from(
-    { length: new Date(year, date.getMonth() + 1, 0).getDate() },
+    { length: new Date(year, fake.getMonth() + 1, 0).getDate() },
     (_, i) => i + 1
   );
 
-  const firstDay = new Date(year, date.getMonth(), 1).getDay();
+  const firstDay = new Date(year, fake.getMonth(), 1).getDay();
   const emptyFirstCells = Array.from({ length: firstDay }, (_, i) => (
     <div key={`empty-${i}`} className="" />
   ));
 
   const prevMonth = () => {
-    changeMonth(new Date(year, date.getMonth() - 1, 1));
+    setFake(new Date(year, fake.getMonth() - 1, 1));
   };
 
   const nextMonth = () => {
-    changeMonth(new Date(year, date.getMonth() + 1, 1));
+    setFake(new Date(year, fake.getMonth() + 1, 1));
   };
 
   return (
@@ -56,14 +58,16 @@ function Calender({ date, onBack, onSelecting, changeMonth }) {
           <div
             onClick={() =>
               typeof onSelecting === "function"
-                ? onSelecting(new Date(year, date.getMonth(), day))
+                ? onSelecting(new Date(year, fake.getMonth(), day))
                 : () => {}
             }
             key={day}
             className={`p-1 ${
               (i + emptyFirstCells.length) % 7 == 0 ? "" : "text-gray-600"
             } cursor-pointer transition border-none hover:border rounded-full  ${
-              curDate == day ? "bg-gray-300" : "hover:bg-gray-200"
+              curDate == day && date.getMonth() == fake.getMonth()
+                ? "bg-gray-300"
+                : "hover:bg-gray-200"
             }`}
           >
             {day}
