@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import leftIcon from "../assets/left.svg";
 import rightIcon from "../assets/right.svg";
 
-function Calender({ date, onBack, onSelecting }) {
+function Calender({ date, onBack, onSelecting, changeMonth }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const curDate = date.getDate();
@@ -20,11 +20,11 @@ function Calender({ date, onBack, onSelecting }) {
   ));
 
   const prevMonth = () => {
-    //   date: new Date(prevState.date.getFullYear(), prevState.date.getMonth() - 1),
+    changeMonth(new Date(year, date.getMonth() - 1, 1));
   };
 
   const nextMonth = () => {
-    //   date: new Date(prevState.date.getFullYear(), prevState.date.getMonth() + 1),
+    changeMonth(new Date(year, date.getMonth() + 1, 1));
   };
 
   return (
@@ -34,7 +34,7 @@ function Calender({ date, onBack, onSelecting }) {
           Back
         </button>
 
-        <div className="flex justify-between items-center flex-grow hidden">
+        <div className="flex justify-between items-center flex-grow">
           <button onClick={prevMonth} className="cursor-pointer">
             <img src={leftIcon} alt="previous" />
           </button>
@@ -78,6 +78,7 @@ Calender.propTypes = {
   date: PropTypes.instanceOf(Date),
   onBack: PropTypes.func.isRequired,
   onSelecting: PropTypes.func,
+  changeMonth: PropTypes.func,
 };
 
 export default Calender;
