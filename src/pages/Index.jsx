@@ -21,6 +21,7 @@ export default function Index() {
             setDate(d);
             setComponent("list");
           }}
+          changeMonth={(d) => setDate(d)}
         />
       );
     }
