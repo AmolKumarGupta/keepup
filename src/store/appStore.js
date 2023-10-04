@@ -4,7 +4,9 @@ import { create } from "zustand";
 const useAppStore = create((set) => ({
   appName: "Keepup",
   optionPage: false,
-  toggleOptionPage: () => set(state => ({optionPage: !state.optionPage}))
+  component: "list",
+  toggleOptionPage: () => set((state) => ({ optionPage: !state.optionPage })),
+  setComponent: (c) => set({ component: c }),
 }));
 
 export default useAppStore;

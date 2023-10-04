@@ -72,6 +72,7 @@ function TrackForm({ onSave }) {
             error?.name ? "text-red-400 border-2 border-red-400" : ""
           }`}
           placeholder="Working on dev.to"
+          autoComplete="off"
         />
 
         <label
@@ -87,6 +88,7 @@ function TrackForm({ onSave }) {
             error?.description ? "text-red-400 border-2 border-red-400" : ""
           }`}
           placeholder="Write briefly..."
+          autoComplete="off"
         />
 
         <label
@@ -99,6 +101,7 @@ function TrackForm({ onSave }) {
           name="category"
           id="category"
           className="w-full p-2 rounded bg-white capitalize"
+          autoComplete="off"
         >
           {category.map((c) => (
             <option value={c} key={c}>
