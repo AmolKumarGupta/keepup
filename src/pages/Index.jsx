@@ -1,11 +1,13 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import TrackList from "../components/TrackList";
 import TrackForm from "../components/forms/TrackForm";
 import Calender from "../components/Calender";
 import useTrackStore from "../store/trackStore";
+import useAppStore from "../store/appStore";
 
 export default function Index() {
-  const [showComponent, setComponent] = useState("list");
+  const showComponent = useAppStore((s) => s.component);
+  const setComponent = useAppStore((s) => s.setComponent);
   const selectedDate = useTrackStore((s) => s.cur);
   const setDate = useTrackStore((s) => s.setDate);
 
@@ -26,7 +28,7 @@ export default function Index() {
       );
     }
     return <TrackList />;
-  }, [showComponent, selectedDate, setDate]);
+  }, [showComponent, selectedDate, setDate, setComponent]);
 
   return (
     <>
@@ -40,7 +42,9 @@ export default function Index() {
           </div>
           <button
             onClick={() =>
-              setComponent((prev) => (prev == "form" ? "list" : "form"))
+              showComponent == "form"
+                ? setComponent("list")
+                : setComponent("form")
             }
             className="bg-white px-3 py-1 rounded shadow active:shadow-neutral-200"
           >
