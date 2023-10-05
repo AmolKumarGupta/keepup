@@ -4,7 +4,7 @@ import useAppStore from "../store/appStore";
 
 export const configName = {
   "g e": "Go to Export",
-  "g h": "Go to Export",
+  "g h": "Go to Home",
   c: "Show Calendar",
   t: "Show Tasks",
   n: "New Task",
