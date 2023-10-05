@@ -9,6 +9,7 @@ The user-friendly interface lets you easily add new habits and log your progress
 - Beautiful UI/UX
 - Export Data as JSON
 - Post data to specifix URL
+- Shortcuts
 
 ### How to Install
 1. Clone this github repo
