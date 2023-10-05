@@ -10,8 +10,8 @@ function TrackList() {
 
   const NoTrackEle = () => (
     <div className="text-lg font-medium text-gray-500 text-center mt-[150px]">
-      No track found, Use{" "}
-      <kbd className="bg-gray-200 p-1/2 px-1 rounded-md">New</kbd>
+      No track found, Type{" "}
+      <kbd className="bg-gray-200 p-1/2 px-1 rounded-md">n</kbd>
     </div>
   );
 
