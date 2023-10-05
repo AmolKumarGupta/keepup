@@ -6,6 +6,7 @@ function Options() {
   const pages = {
     home: "/",
     export: "export",
+    shortcuts: "shortcuts",
   };
 
   return (

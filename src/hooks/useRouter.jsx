@@ -3,6 +3,7 @@ import App from "../App";
 import Index from "../pages/Index";
 import Export from "../pages/Export";
 import Calender from "../components/Calender";
+import Shortcuts from "../pages/Shortcuts";
 
 /**
  * setup routes and layout.
@@ -27,6 +28,10 @@ export default function useRouter() {
         {
           path: "export",
           element: <Export />,
+        },
+        {
+          path: "shortcuts",
+          element: <Shortcuts />,
         },
       ],
     },
