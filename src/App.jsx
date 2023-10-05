@@ -2,10 +2,10 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import useAppStore from "./store/appStore";
 import Options from "./pages/Options";
-import useShortcode from "./hooks/useShortcode";
+import useShortcut from "./hooks/useShortcut";
 
 function App() {
-  useShortcode();
+  useShortcut();
 
   const isOptionPage = useAppStore((s) => s.optionPage);
 

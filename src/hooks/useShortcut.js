@@ -10,7 +10,7 @@ export const configName = {
   n: "New Task",
 };
 
-function useShortcode() {
+function useShortcut() {
   const navigate = useNavigate();
   const setComponent = useAppStore((s) => s.setComponent);
 
@@ -30,4 +30,4 @@ function useShortcode() {
   });
 }
 
-export default useShortcode;
+export default useShortcut;
